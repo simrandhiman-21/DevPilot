@@ -15,7 +15,9 @@ export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
-}>) {
+}
+suppressHydrationWarning
+>) {
   return (
     <html
       lang="en"
@@ -23,7 +25,14 @@ export default function RootLayout({
       className={cn("antialiased", fontMono.variable, "font-sans", inter.variable)}
     >
       <body>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>   <ThemeProvider
+                                   attribute="class"
+                                   defaultTheme="system"
+                                   enableSystem
+                                   disableTransitionOnChange
+                                 >
+                                   {children}
+                                 </ThemeProvider></ThemeProvider>
       </body>
     </html>
   )
