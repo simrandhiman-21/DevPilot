@@ -1,0 +1,14 @@
+Replace @Data with @Getter and @Setter. @Data also generates a toString() that prints every field,
+so accessToken can leak into logs if you ever print a User.
+
+
+java.sql.Timestamp is the old way.
+java.time.Instant is the modern way.
+
+
+Tool	                  Works with
+MySQL Workbench	          MySQL only
+pgAdmin	                  PostgreSQL only
+DBeaver	Many databases,  including both
+
+
