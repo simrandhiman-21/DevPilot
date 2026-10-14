@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Map;
+import java.util.UUID;
 
 @Service
 public class UserServices {
@@ -28,7 +29,7 @@ public class UserServices {
 
         String encryptedToken = tokenEncryptor.encrypt(accessToken);
 
-        User user = userRepository.findByGithubId(githubId).orElseGet(User::new);
+        User user = userRepository.findByGithubId(String.valueOf(githubId)).orElseGet(User::new);
         user.setGithubId(String.valueOf(githubId));
         user.setGithubUsername(login);
         user.setGithubUsername(name);
@@ -39,7 +40,7 @@ public class UserServices {
     }
 
     @Transactional(readOnly = true)
-    public User requiredById(UUID id) {
+    public User requiredById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("User not found: " + id));
     }
